@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Creative Advisor</title>
+    <style>
+        body {
+            background: linear-gradient(to right, blue, black, white);
+            font-family: Arial;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        form {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 300px;
+            height: 30px;
+            border: none;
+            border-radius: 15px;
+            padding: 10px;
+        }
+        button {
+            width: 100px;
+            height: 30px;
+            border: none;
+            border-radius: 15px;
+            background: white;
+            color: black;
+        }
+        img {
+            width: 512px;
+            height: 512px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Creative Advisor</h1>
+    <p>A website that uses chatgpt and midjourney to generate images based on your text.</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="text" placeholder="Enter some text here..." required>
+        <button type="submit">Generate</button>
+    </form>
+    {% if reply and image_url %}
+        <p>You said: {{ text }}</p>
+        <p>Chatgpt replied: {{ reply }}</p>
+        <img src="{{ image_url }}" alt="Generated image">
+        <a href="{{ image_url }}" download>Save image</a>
+        <a href="/">Generate again</a>
+    {% endif %}
+</body>
+</html>
