@@ -1,0 +1,14 @@
+{
+        "builds": [
+          {
+            "src": "creative_advisor/wsgi.py",
+            "use": "@vercel/python"
+          }
+        ],
+        "routes": [
+          {
+            "src": "/(.*)",
+            "dest": "creative_advisor/wsgi.py"
+          }
+        ]
+    }
